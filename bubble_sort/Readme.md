@@ -47,3 +47,41 @@ func bubbleSort(list []int) []int {
 - Nếu sau khi duyệt qua hết các phần tử trong mảng mà checkResult vẫn bằng 0 --> chứng tỏ mảng đã được sắp xếp từ bé đến lớn --> return ngay, thoát khỏi vòng lặp
 
 - Còn nếu checkResult <> 0 --> reset lại giá trị của checkResult về0 và tiếp tục chạy. Nếu không reset giá trị checkResult về 0 thì biến checkResult sẽ không bao giờ = 0 --> vòng lặp for vô tận
+
+### Một cách triển khai khác
+
+```go
+func bubbleSort_2(list []int) []int {
+    for i := 0; i < len(list); i++ {
+        if !compare(list, i) {
+            return list
+        }
+    }
+    return list
+}
+
+func compare(list []int, index int) bool {
+    firstIndex := 0
+    secondIndex := 1
+    numberOfItems := len(list)
+
+    var firstNumber, secondNumber int
+    isSwap := false
+
+    for secondIndex < (numberOfItems - index) {
+        firstNumber = list[firstIndex]
+        secondNumber = list[secondIndex]
+
+        if firstNumber > secondNumber {
+            list[firstIndex] = secondNumber
+            list[secondIndex] = firstNumber
+            isSwap = true
+        }
+
+        firstIndex++
+        secondIndex++
+    }
+
+    return isSwap
+}
+```
