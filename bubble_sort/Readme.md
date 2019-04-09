@@ -48,6 +48,8 @@ func bubbleSort(list []int) []int {
 
 - Còn nếu checkResult <> 0 --> reset lại giá trị của checkResult về0 và tiếp tục chạy. Nếu không reset giá trị checkResult về 0 thì biến checkResult sẽ không bao giờ = 0 --> vòng lặp for vô tận
 
+------------
+
 ### Một cách triển khai khác
 
 ```go
@@ -85,3 +87,18 @@ func compare(list []int, index int) bool {
     return isSwap
 }
 ```
+
+Cách này vận dụng 2 nguyên tắc:
+
+1. Sau mỗi lần chạy hàm compare, từng số lớn nhất sẽ được đẩy về tận cùng bên phải. Ví dụ với dãy [5,6,4,2,3]:
+
+- Chạy hàm compare lần đầu: 6 là số lớn nhất trong 5 số --> [5,4,2,3,6]
+- Chạy hàm compare lần 2 --> 5 là số lớn nhất trong 4 số còn lại (5,4,2,3) --> [4,2,3,5,6]
+- ...
+
+2. Dựa trên nguyên tắc 1 --> Sau mỗi lần chạy hàm compare, số phần tử mà hàm compare cần phải chạy qua sẽ giảm đi 1, cụ thể:
+
+- Lần chạy đầu tiên, compare chạy qua tất cả 5 các phần tử --> số phần tử bớt đi = 0
+- Lần chạy thứ 2, compare chỉ cần chạy qua 4 phần tử --> số phần tử có thể bớt đi = 1
+- Lần chạy thứ 3, compare chỉ cần chạy qua 3 phần tử --> số phần tử có thể bớt đi = 2
+- ...
